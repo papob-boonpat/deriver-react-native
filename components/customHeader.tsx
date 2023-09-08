@@ -1,9 +1,40 @@
 import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+const SearchBar = () => (
+  <View style={styles.searchContainer}>
+    <View style={styles.serchSection}>
+      <View style={styles.serachField}>
+        <Ionicons
+          style={styles.searchIcon}
+          name="ios-search"
+          size={20}
+          color={Colors.medium}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Restaurants, groceries, dishes"
+        />
+      </View>
+      <Link href={"/"} asChild>
+        <TouchableOpacity style={styles.optionButton}>
+          <Ionicons name="options-outline" size={20} color={Colors.primary} />
+        </TouchableOpacity>
+      </Link>
+    </View>
+  </View>
+);
 const CustomHeader = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -25,6 +56,7 @@ const CustomHeader = () => {
           <Ionicons name="person-outline" size={20} color={Colors.primary} />
         </TouchableOpacity>
       </View>
+      <SearchBar />
     </SafeAreaView>
   );
 };
@@ -66,6 +98,35 @@ const styles = StyleSheet.create({
   locationName: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  searchContainer: {
+    height: 60,
+    backgroundColor: "white",
+  },
+  serchSection: {
+    flexDirection: "row",
+    gap: 10,
+    flex: 1,
+    paddingHorizontal: 20,
+    alignItems: "center",
+  },
+  serachField: {
+    flex: 1,
+    backgroundColor: Colors.lightGrey,
+    borderRadius: 8,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  optionButton: {
+    padding: 10,
+    borderRadius: 50,
+  },
+  input: {
+    padding: 10,
+    color: Colors.mediumDark,
+  },
+  searchIcon: {
+    paddingLeft: 10,
   },
 });
 
