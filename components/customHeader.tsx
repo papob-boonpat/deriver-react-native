@@ -9,8 +9,11 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  SafeAreaView,
+  Platform,
+  StatusBar,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+
 import BottomSheet from "./bottomSheet";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
@@ -73,6 +76,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   container: {
     height: 60,
