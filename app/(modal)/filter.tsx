@@ -122,7 +122,13 @@ const Filter = () => {
       <View style={styles.footer}>
         <View style={styles.btnContainer}>
           <Animated.View style={[styles.outlineButton, animatedStyles]}>
-            <TouchableOpacity onPress={handleClearAll}>
+            <TouchableOpacity
+              style={{
+                height: "100%",
+                justifyContent: "center",
+              }}
+              onPress={handleClearAll}
+            >
               <Animated.Text style={[animatedText, styles.outlineButtonText]}>
                 Clear All
               </Animated.Text>
@@ -230,7 +236,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     verticalAlign: "middle",
     fontSize: 16,
-    height: "100%",
   },
 });
 export default Filter;
