@@ -47,7 +47,7 @@ const CustomHeader = () => {
     bottomSheetRef.current?.present();
   };
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={styles.safeArea}>
       <BottomSheet ref={bottomSheetRef} />
       <View style={styles.container}>
         <TouchableOpacity onPress={openModal}>
@@ -68,7 +68,7 @@ const CustomHeader = () => {
         </TouchableOpacity>
       </View>
       <SearchBar />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   container: {
     height: 60,
