@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, Platform } from "react-native";
 import React, { forwardRef, useCallback, useMemo } from "react";
 import {
   BottomSheetBackdrop,
@@ -43,7 +43,13 @@ const BottomSheet = forwardRef<Ref>((props, ref) => {
           </TouchableOpacity>
         </View>
         <Text style={styles.subHeader}>Your Location</Text>
-        <Link href={"/"} asChild>
+        <Link
+          href={"/(modal)/location-search"}
+          onPress={() => {
+            Platform.OS === "android" && dismiss();
+          }}
+          asChild
+        >
           <TouchableOpacity>
             <View style={styles.item}>
               <Ionicons
