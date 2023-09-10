@@ -5,39 +5,38 @@ import {
   StyleSheet,
   StatusBar,
   Platform,
+  useWindowDimensions,
 } from "react-native";
 import React from "react";
 import Categories from "@/components/categories";
 import Restaurants from "@/components/restaurants";
 import Colors from "@/constants/Colors";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CustomHeader from "@/components/customHeader";
 
 const Page = () => {
   const inset = useSafeAreaInsets();
   return (
-    <SafeAreaView style={styles.container} edges={["top"]}>
+    <View style={styles.container}>
+      <View style={{ height: inset.top, backgroundColor: "white" }} />
       <CustomHeader />
-      <ScrollView
-        style={{ marginTop: 120 }}
-        contentContainerStyle={{ paddingBottom: 40 }}
-      >
-        <Categories />
-        <Text style={styles.header}>Top pick in your neighborhood</Text>
-        <Restaurants />
-        <Text style={styles.header}>Offers near you</Text>
-        <Restaurants />
-      </ScrollView>
-    </SafeAreaView>
+      <View style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
+          <Categories />
+          <Text style={styles.header}>Top pick in your neighborhood</Text>
+          <Restaurants />
+          <Text style={styles.header}>Offers near you</Text>
+          <Restaurants />
+        </ScrollView>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.lightGrey,
+    height: "100%",
   },
   header: {
     fontSize: 18,

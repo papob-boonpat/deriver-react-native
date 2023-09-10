@@ -9,9 +9,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  SafeAreaView,
-  Platform,
-  StatusBar,
 } from "react-native";
 
 import BottomSheet from "./bottomSheet";
@@ -74,9 +71,7 @@ const CustomHeader = () => {
 
 const styles = StyleSheet.create({
   safeArea: {
-    flex: 1,
     backgroundColor: "#fff",
-    // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   container: {
     height: 60,
