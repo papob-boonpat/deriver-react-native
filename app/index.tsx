@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  StatusBar,
-  Platform,
-  useWindowDimensions,
-} from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import Categories from "@/components/categories";
 import Restaurants from "@/components/restaurants";
