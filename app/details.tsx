@@ -1,6 +1,7 @@
 import { restaurant } from "@/assets/data/restaurant";
 import ParallaxScrollView from "@/components/parallaxScrollView";
 import Colors from "@/constants/Colors";
+import useBasketStore from "@/store/basketStore";
 import { Ionicons } from "@expo/vector-icons";
 import { Link, useNavigation } from "expo-router";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -21,6 +22,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Details = () => {
   const navigation = useNavigation();
@@ -39,6 +41,8 @@ const Details = () => {
     data: item.meals,
     index,
   }));
+
+  const { items, total } = useBasketStore();
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTransparent: true,
@@ -150,6 +154,7 @@ const Details = () => {
           />
         </View>
       </ParallaxScrollView>
+      {/*Sticky segment*/}
       <Animated.View style={[styles.stickySegments, animatedStyle]}>
         <View style={styles.segmentsShadow}>
           <ScrollView
@@ -181,6 +186,20 @@ const Details = () => {
           </ScrollView>
         </View>
       </Animated.View>
+      {/*Footer segment*/}
+      {items > 0 && (
+        <View style={styles.footer}>
+          <SafeAreaView edges={["bottom"]}>
+            <Link href="/basket" asChild>
+              <TouchableOpacity style={styles.fullButton}>
+                <Text style={styles.basket}>{items}</Text>
+                <Text style={styles.footerText}>View Basket</Text>
+                <Text style={styles.basketTotal}>${total}</Text>
+              </TouchableOpacity>
+            </Link>
+          </SafeAreaView>
+        </View>
+      )}
     </>
   );
 };
@@ -291,6 +310,46 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 20,
     paddingBottom: 4,
+  },
+  footer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    left: 0,
+    padding: 10,
+    elevation: 10,
+    backgroundColor: "#fff",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: -10 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    paddingTop: 20,
+  },
+  footerText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  basket: {
+    color: "#fff",
+    backgroundColor: "#19AA86",
+    padding: 8,
+    borderRadius: 2,
+  },
+  basketTotal: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  fullButton: {
+    flexDirection: "row",
+    backgroundColor: Colors.primary,
+    paddingHorizontal: 16,
+    height: 50,
+    borderRadius: 8,
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "space-between",
   },
 });
 
